@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Bot, Globe, Cpu, Database, Sparkles, ShieldCheck, 
-  ArrowRight, CheckCircle2, ChevronRight 
+  ArrowRight, CheckCircle2 
 } from 'lucide-react';
 import { SERVICES, SERVICE_CATEGORIES } from '../data/services';
-import Button from '../components/ui/Button';
+import ScrollReveal, { RevealItem, DeployCard } from '../components/ui/ScrollReveal';
 
 const ICON_MAP = {
   Bot, Globe, Cpu, Database, Sparkles, ShieldCheck
@@ -18,140 +19,106 @@ export default function ServicesBentoSection({ onOpenConsultation }) {
     : SERVICES.filter(s => s.category === activeCategory);
 
   return (
-    <section id="services" className="py-24 sm:py-32 bg-white relative">
+    <section id="services" className="py-24 sm:py-32 bg-slate-50 border-y border-slate-200 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div className="max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
+        <ScrollReveal stagger={true} staggerDelay={0.08} className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <RevealItem direction="up" className="max-w-2xl">
+            <span className="text-sm font-bold uppercase tracking-widest text-slate-500">
               Core Capabilities & Offerings
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight mt-2">
               Engineered for Speed, Precision & Zero Operational Friction.
             </h2>
-            <p className="text-base text-slate-600 mt-3 leading-relaxed">
-              We specialize in two converging domains: autonomous AI pipelines that eliminate manual labor, and bespoke web platforms engineered to convert traffic.
-            </p>
-          </div>
+          </RevealItem>
 
-          {/* Category Filter Pills */}
-          <div className="flex items-center gap-2 p-1.5 bg-slate-100/90 rounded-2xl self-start md:self-auto border border-slate-200/80">
+          <RevealItem direction="left" className="flex items-center gap-2 p-1.5 bg-white rounded-lg border border-slate-200 self-start md:self-auto">
             {SERVICE_CATEGORIES.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-md text-sm font-semibold transition-all cursor-pointer ${
                   activeCategory === category
-                    ? 'bg-white text-slate-900 shadow-soft-sm'
-                    : 'text-slate-600 hover:text-slate-900'
+                    ? 'bg-slate-900 text-white shadow-sm'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
               >
                 {category}
               </button>
             ))}
-          </div>
-        </div>
+          </RevealItem>
+        </ScrollReveal>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <ScrollReveal 
+          key={activeCategory}
+          stagger={true} 
+          staggerDelay={0.09} 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
           {filteredServices.map((service) => {
             const IconComp = ICON_MAP[service.icon] || Bot;
             return (
-              <div
+              <DeployCard
                 key={service.id}
-                className={`flex flex-col justify-between rounded-3xl p-6 sm:p-8 bg-white border border-slate-200/90 shadow-soft-sm hover:shadow-soft-lg hover:border-brand-200 transition-all duration-300 group ${
+                direction="up"
+                className={`flex flex-col justify-between rounded-xl p-6 sm:p-8 bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all duration-300 group ${
                   service.featured ? 'lg:col-span-2' : ''
                 }`}
               >
                 <div>
-                  {/* Top Metadata */}
-                  <div className="flex items-center justify-between gap-2 mb-4">
-                    <div className="flex items-center gap-2">
-                      <div className="w-10 h-10 rounded-2xl bg-brand-50 border border-brand-100 text-brand-600 flex items-center justify-center group-hover:scale-105 group-hover:bg-brand-600 group-hover:text-white transition-all">
-                        <IconComp className="w-5 h-5" />
+                  <div className="flex items-center justify-between gap-2 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-lg bg-slate-100 border border-slate-200 text-slate-700 flex items-center justify-center group-hover:bg-slate-900 group-hover:text-white transition-all duration-200">
+                        <IconComp className="w-6 h-6" />
                       </div>
-                      <span className="text-[11px] font-bold uppercase tracking-wider text-brand-700 bg-brand-50/80 px-2.5 py-1 rounded-md">
-                        {service.eyebrow}
-                      </span>
                     </div>
-
-                    <span className="text-[11px] font-medium text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">
+                    <span className="text-xs font-bold text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
                       {service.category}
                     </span>
                   </div>
 
-                  {/* Title & Description */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight group-hover:text-brand-600 transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
                     {service.title}
                   </h3>
-                  <p className="text-sm text-slate-600 mt-2 leading-relaxed">
+                  <p className="text-sm text-slate-600 mt-3 leading-relaxed">
                     {service.description}
                   </p>
 
-                  {/* Highlights Bullet List */}
-                  <div className="mt-5 space-y-2 pt-4 border-t border-slate-100">
+                  <div className="mt-6 space-y-3 pt-6 border-t border-slate-100">
                     {service.highlights.map((h, i) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
-                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
+                      <div key={i} className="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                        <CheckCircle2 className="w-5 h-5 text-slate-900 shrink-0" />
                         <span>{h}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Bottom Row: Tech Chips + Metric Pill + Inquire Action */}
-                <div className="mt-6 pt-5 border-t border-slate-100 space-y-4">
-                  {/* Tech stack chips */}
-                  <div className="flex flex-wrap items-center gap-1.5">
+                <div className="mt-8 pt-6 border-t border-slate-100 space-y-4">
+                  <div className="flex flex-wrap items-center gap-2">
                     {service.tech.map((t) => (
                       <span
                         key={t}
-                        className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600"
+                        className="text-xs font-semibold px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200"
                       >
                         {t}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                    <div className="text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200/80">
-                      ★ {service.metric}
-                    </div>
-
-                    <button
-                      onClick={onOpenConsultation}
-                      className="text-xs font-bold text-slate-900 hover:text-brand-600 inline-flex items-center gap-1 transition-colors cursor-pointer self-start sm:self-auto"
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                    <Link
+                      to={`/services/${service.id}`}
+                      className="text-sm font-bold text-slate-900 hover:text-slate-600 inline-flex items-center gap-1 transition-colors cursor-pointer group/link"
                     >
-                      <span>Inquire Blueprint</span>
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
+                      <span>Explore Architecture</span>
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
+                    </Link>
                   </div>
                 </div>
-              </div>
+              </DeployCard>
             );
           })}
-        </div>
-
-        {/* Bottom Banner Callout */}
-        <div className="mt-12 p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <h4 className="text-base sm:text-lg font-bold text-slate-900">
-              Need a bespoke combination of AI agents and custom web infrastructure?
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-600">
-              We frequently build custom full-lifecycle systems that integrate both domains seamlessly.
-            </p>
-          </div>
-          <Button
-            variant="brand"
-            size="md"
-            icon={ArrowRight}
-            onClick={onOpenConsultation}
-            className="shrink-0"
-          >
-            Design Custom Architecture
-          </Button>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

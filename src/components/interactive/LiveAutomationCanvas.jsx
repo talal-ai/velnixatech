@@ -98,12 +98,12 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
       </div>
 
       {/* Main Canvas Body */}
-      <div className="p-6 sm:p-8 bg-grid-pattern">
+      <div className="p-6 sm:p-8 bg-slate-50">
         {/* Scenario Header Info */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-8">
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-xs font-semibold uppercase tracking-wider text-brand-600">
+              <span className="text-xs font-semibold uppercase tracking-wider text-slate-600">
                 {currentScenario.badge}
               </span>
               <span className="text-slate-300">•</span>
@@ -119,7 +119,7 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
           <button
             onClick={runSimulation}
             disabled={isSimulating}
-            className="self-start sm:self-center inline-flex items-center gap-2 px-4 py-2 bg-brand-50 hover:bg-brand-100 text-brand-700 text-xs font-semibold rounded-xl border border-brand-200 transition-all cursor-pointer disabled:opacity-60"
+            className="self-start sm:self-center inline-flex items-center gap-2 px-4 py-2 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold rounded-xl border border-slate-200 transition-all cursor-pointer disabled:opacity-60"
           >
             {isSimulating ? (
               <>
@@ -148,7 +148,7 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
                 onClick={() => setActiveNodeIndex(idx)}
                 className={`relative rounded-2xl p-5 transition-all duration-300 cursor-pointer border ${
                   isActive
-                    ? 'bg-white border-brand-500 shadow-soft-lg ring-2 ring-brand-500/10 translate-y-[-2px]'
+                    ? 'bg-white border-slate-500 shadow-soft-lg ring-2 ring-slate-500/10 translate-y-[-2px]'
                     : isCompleted
                     ? 'bg-slate-50/90 border-slate-200/80 shadow-soft-xs hover:border-slate-300'
                     : 'bg-white/90 border-slate-200/70 shadow-soft-xs hover:border-slate-300'
@@ -175,7 +175,7 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
                   <span
                     className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${
                       isActive
-                        ? 'bg-brand-50 text-brand-700 border border-brand-200'
+                        ? 'bg-slate-50 text-slate-700 border border-slate-200'
                         : isCompleted
                         ? 'bg-emerald-50 text-emerald-700 border border-emerald-200'
                         : 'bg-slate-100 text-slate-500'
@@ -190,7 +190,7 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
                   <div
                     className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 transition-colors ${
                       isActive
-                        ? 'bg-brand-600 text-white shadow-soft-sm'
+                        ? 'bg-slate-600 text-white shadow-soft-sm'
                         : isCompleted
                         ? 'bg-emerald-600 text-white'
                         : 'bg-slate-100 text-slate-700'
@@ -216,7 +216,7 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
                 {/* Active Indicator Pulse Bar */}
                 {isActive && (
                   <div className="mt-3.5 h-1 w-full bg-slate-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-brand-500 rounded-full animate-pulse"></div>
+                    <div className="h-full bg-slate-500 rounded-full animate-pulse"></div>
                   </div>
                 )}
               </div>
@@ -253,7 +253,7 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
 
           {/* Optional Simulation Log Output */}
           {simulationLog.length > 0 && (
-            <div className="mt-3 pt-3 border-t border-slate-800/60 font-mono text-[11px] text-brand-300 flex flex-col gap-1 max-h-24 overflow-y-auto">
+            <div className="mt-3 pt-3 border-t border-slate-800/60 font-mono text-[11px] text-slate-300 flex flex-col gap-1 max-h-24 overflow-y-auto">
               {simulationLog.map((log, i) => (
                 <div key={i}>{log}</div>
               ))}
@@ -269,7 +269,7 @@ export default function LiveAutomationCanvas({ onOpenConsultation }) {
         </div>
         <button
           onClick={onOpenConsultation}
-          className="font-semibold text-brand-600 hover:text-brand-700 inline-flex items-center gap-1.5 transition-colors cursor-pointer"
+          className="font-semibold text-slate-600 hover:text-slate-700 inline-flex items-center gap-1.5 transition-colors cursor-pointer"
         >
           <span>Schedule Architecture Consultation</span>
           <ArrowRight className="w-3.5 h-3.5" />

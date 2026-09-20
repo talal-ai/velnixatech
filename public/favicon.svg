@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="112" fill="#0F172A"/>
+  <!-- Central Architectural Chevron V -->
+  <path d="M148 140 L256 372 L364 140 L308 140 L256 268 L204 140 Z" fill="#FFFFFF"/>
+  <path d="M228 140 L256 208 L284 140 Z" fill="#38BDF8"/>
+  <path d="M256 312 L288 236 L256 256 L224 236 Z" fill="#06B6D4"/>
+  <!-- Left Wing Neural Lattice -->
+  <path d="M148 140 L108 196 L172 260 L204 220 Z" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <line x1="108" y1="196" x2="204" y2="140" stroke="#94A3B8" stroke-width="6"/>
+  <circle cx="108" cy="196" r="10" fill="#38BDF8"/>
+  <circle cx="148" cy="140" r="12" fill="#FFFFFF"/>
+  <circle cx="172" cy="260" r="10" fill="#06B6D4"/>
+  <circle cx="204" cy="140" r="10" fill="#38BDF8"/>
+  <!-- Right Wing Neural Lattice -->
+  <path d="M364 140 L404 196 L340 260 L308 220 Z" stroke="#38BDF8" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <line x1="404" y1="196" x2="308" y2="140" stroke="#94A3B8" stroke-width="6"/>
+  <circle cx="404" cy="196" r="10" fill="#38BDF8"/>
+  <circle cx="364" cy="140" r="12" fill="#FFFFFF"/>
+  <circle cx="340" cy="260" r="10" fill="#06B6D4"/>
+  <circle cx="308" cy="140" r="10" fill="#38BDF8"/>
+  <!-- Bottom Apex Node -->
+  <circle cx="256" cy="372" r="12" fill="#38BDF8"/>
+</svg>

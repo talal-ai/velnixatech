@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Modal from '../ui/Modal';
 import Button from '../ui/Button';
-import { Check, ArrowRight, Sparkles, CheckCircle2, Calendar, Shield } from 'lucide-react';
+import { Check, ArrowRight, Sparkles, CheckCircle2, Calendar, Shield, Lock, CreditCard } from 'lucide-react';
 
 export default function ProjectInquiryModal({ isOpen, onClose }) {
   const [step, setStep] = useState(1);
@@ -50,7 +51,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
     >
       {isSubmitted ? (
         <div className="py-8 text-center">
-          <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+          <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
             <CheckCircle2 className="w-8 h-8" />
           </div>
           <h4 className="text-2xl font-bold text-slate-900">Discovery Sprint Reserved!</h4>
@@ -60,7 +61,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
 
           <div className="my-6 p-4 rounded-2xl bg-slate-50 border border-slate-200 text-left text-xs text-slate-600 space-y-2">
             <div className="flex items-center gap-2 font-semibold text-slate-800">
-              <Calendar className="w-4 h-4 text-brand-600" />
+              <Calendar className="w-4 h-4 text-slate-900" />
               <span>Next Steps in Our 48-Hour Protocol:</span>
             </div>
             <p>1. Systems audit team reviews your company domain ({formData.company || 'your organization'}).</p>
@@ -82,7 +83,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
           {/* Step Indicator */}
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-brand-600 text-white text-xs font-bold flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-slate-900 text-white text-xs font-bold flex items-center justify-center">
                 {step}
               </span>
               <span className="text-xs font-semibold text-slate-700">
@@ -110,14 +111,14 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                   onClick={() => setSelectedService(service.title)}
                   className={`p-4 rounded-xl border transition-all cursor-pointer ${
                     selectedService === service.title
-                      ? 'border-brand-600 bg-brand-50/50 shadow-soft-xs ring-1 ring-brand-500'
+                      ? 'border-slate-900 bg-slate-50 shadow-xs ring-1 ring-slate-900'
                       : 'border-slate-200 hover:border-slate-300 bg-white'
                   }`}
                 >
                   <div className="flex items-center justify-between">
                     <h5 className="text-sm font-bold text-slate-900">{service.title}</h5>
                     {selectedService === service.title && (
-                      <Check className="w-4 h-4 text-brand-600" />
+                      <Check className="w-4 h-4 text-slate-900" />
                     )}
                   </div>
                   <p className="text-xs text-slate-500 mt-1">{service.desc}</p>
@@ -152,7 +153,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                       onClick={() => setTimeline(t)}
                       className={`p-2.5 text-xs font-medium rounded-xl border text-left transition-colors cursor-pointer ${
                         timeline === t
-                          ? 'border-brand-600 bg-brand-50 text-brand-700 font-semibold'
+                          ? 'border-slate-900 bg-slate-900 text-white font-semibold'
                           : 'border-slate-200 hover:bg-slate-50 text-slate-700'
                       }`}
                     >
@@ -174,7 +175,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                       onClick={() => setBudget(b)}
                       className={`p-2.5 text-xs font-medium rounded-xl border text-center transition-colors cursor-pointer ${
                         budget === b
-                          ? 'border-brand-600 bg-brand-50 text-brand-700 font-semibold'
+                          ? 'border-slate-900 bg-slate-900 text-white font-semibold'
                           : 'border-slate-200 hover:bg-slate-50 text-slate-700'
                       }`}
                     >
@@ -208,7 +209,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                   placeholder="e.g. Marcus Sterling"
                   value={formData.fullName}
                   onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+                  className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
                 />
               </div>
 
@@ -223,7 +224,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                     placeholder="marcus@company.com"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
                   />
                 </div>
 
@@ -237,7 +238,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                     placeholder="company.com"
                     value={formData.company}
                     onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
                   />
                 </div>
               </div>
@@ -251,13 +252,23 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                   placeholder="e.g. We spend 20 hours/week manually routing vendor invoices and need our website rebuilt with sub-50ms speed..."
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  className="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white resize-none"
+                  className="w-full px-3.5 py-2 text-sm rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white resize-none"
                 />
               </div>
 
-              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 flex items-center gap-2 text-[11px] text-slate-500">
-                <Shield className="w-4 h-4 text-emerald-600 shrink-0" />
-                <span>NDA & Privacy Guaranteed. Zero spam. We reply with a technical brief within 4 business hours.</span>
+              {/* Trust & Merchant Compliance Box */}
+              <div className="p-3 bg-slate-50 rounded-xl border border-slate-200/80 space-y-1 text-[11px] text-slate-600">
+                <div className="flex items-center gap-2">
+                  <Shield className="w-4 h-4 text-emerald-600 shrink-0" />
+                  <span>Strict NDA & Privacy Protection. Zero spam. We reply within 4 business hours.</span>
+                </div>
+                <div className="flex items-center gap-2 text-slate-500 pl-6">
+                  <Lock className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                  <span>All payments & contracts secured via Stripe with Visa & Mastercard 3DS 2.0.</span>
+                </div>
+                <div className="text-[10px] text-slate-400 pl-6">
+                  Merchant Office: 7901 4TH ST N STE 300 ST. PETERSBURG, FL 33702
+                </div>
               </div>
 
               <div className="flex items-center justify-between pt-2">
@@ -266,7 +277,7 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                 </Button>
                 <Button
                   type="submit"
-                  variant="brand"
+                  variant="primary"
                   size="lg"
                   isLoading={isSubmitting}
                   icon={Sparkles}
@@ -274,6 +285,19 @@ export default function ProjectInquiryModal({ isOpen, onClose }) {
                   Schedule Strategy Session
                 </Button>
               </div>
+
+              {/* Legal Accordance */}
+              <p className="text-[11px] text-slate-400 text-center pt-2 leading-relaxed">
+                By submitting this request, you agree to our{' '}
+                <Link to="/terms" onClick={handleClose} className="text-slate-700 font-medium underline hover:text-slate-900">
+                  Terms of Service
+                </Link>{' '}
+                and acknowledge our{' '}
+                <Link to="/privacy" onClick={handleClose} className="text-slate-700 font-medium underline hover:text-slate-900">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
             </form>
           )}
         </div>

@@ -4,6 +4,7 @@ import {
   Terminal, Lock, Zap, ArrowRight, CheckCircle2 
 } from 'lucide-react';
 import Button from '../components/ui/Button';
+import ScrollReveal, { RevealItem, DeployCard } from '../components/ui/ScrollReveal';
 
 export default function WorkflowEngineSection({ onOpenConsultation }) {
   const pillars = [
@@ -42,33 +43,40 @@ export default function WorkflowEngineSection({ onOpenConsultation }) {
   ];
 
   return (
-    <section id="live-engine" className="py-24 sm:py-32 bg-slate-50/70 border-y border-slate-200/60 relative">
+    <section id="live-engine" className="py-24 sm:py-32 bg-slate-50/70 border-y border-slate-200/60 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
-            Fault-Tolerant AI Engineering
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
-            The Velnix Autonomous Runtime Architecture.
-          </h2>
-          <p className="text-base text-slate-600 mt-3 leading-relaxed">
-            We don’t build fragile automation scripts. We engineer resilient distributed systems that run autonomously in production with enterprise-grade observability and zero downtime.
-          </p>
-        </div>
+        <ScrollReveal stagger={true} staggerDelay={0.08} className="max-w-3xl mx-auto text-center mb-16">
+          <RevealItem direction="up">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-600">
+              Fault-Tolerant AI Engineering
+            </span>
+          </RevealItem>
+          <RevealItem direction="up">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
+              The Velnix Autonomous Runtime Architecture.
+            </h2>
+          </RevealItem>
+          <RevealItem direction="up">
+            <p className="text-base text-slate-600 mt-3 leading-relaxed">
+              We don’t build fragile automation scripts. We engineer resilient distributed systems that run autonomously in production with enterprise-grade observability and zero downtime.
+            </p>
+          </RevealItem>
+        </ScrollReveal>
 
         {/* 4 Pillars Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+        <ScrollReveal stagger={true} staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
           {pillars.map((pillar) => {
             const Icon = pillar.icon;
             return (
-              <div
+              <DeployCard
                 key={pillar.step}
-                className="p-8 rounded-3xl bg-white border border-slate-200 shadow-soft-sm hover:shadow-soft-md hover:border-slate-300 transition-all flex flex-col justify-between"
+                direction="up"
+                className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-mono font-extrabold text-brand-600 bg-brand-50 px-3 py-1 rounded-full border border-brand-100">
+                    <span className="text-xs font-mono font-extrabold text-slate-600 bg-slate-100 px-3 py-1 rounded-full border border-slate-200">
                       PHASE {pillar.step}
                     </span>
                     <span className="text-[11px] font-semibold text-slate-600 uppercase tracking-wider bg-slate-100 px-2.5 py-0.5 rounded-full">
@@ -77,14 +85,14 @@ export default function WorkflowEngineSection({ onOpenConsultation }) {
                   </div>
 
                   <div className="flex items-start gap-4 mb-3">
-                    <div className="w-11 h-11 rounded-2xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-soft-xs">
+                    <div className="w-11 h-11 rounded-2xl bg-slate-900 text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-105 transition-transform duration-200">
                       <Icon className="w-5 h-5" />
                     </div>
                     <div>
                       <h3 className="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
                         {pillar.title}
                       </h3>
-                      <p className="text-xs font-medium text-brand-700 mt-0.5">
+                      <p className="text-xs font-medium text-slate-700 mt-0.5">
                         {pillar.subtitle}
                       </p>
                     </div>
@@ -102,20 +110,23 @@ export default function WorkflowEngineSection({ onOpenConsultation }) {
                   </div>
                   <span className="font-mono text-slate-400 text-[11px]">SLA 99.99%</span>
                 </div>
-              </div>
+              </DeployCard>
             );
           })}
-        </div>
+        </ScrollReveal>
 
         {/* Live Architecture Code/Telemetry Snippet */}
-        <div className="mt-12 rounded-3xl bg-slate-900 text-slate-200 border border-slate-800 p-6 sm:p-8 shadow-soft-xl overflow-hidden font-mono text-xs">
+        <ScrollReveal direction="scale" delay={0.15} className="mt-12 rounded-3xl bg-slate-900 text-slate-200 border border-slate-800 p-6 sm:p-8 shadow-xl overflow-hidden font-mono text-xs">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-800">
             <div className="flex items-center gap-2">
-              <Terminal className="w-4 h-4 text-brand-400" />
+              <Terminal className="w-4 h-4 text-slate-400" />
               <span className="font-bold text-white">velnix_agent_state_machine.py</span>
               <span className="text-[10px] text-slate-400 bg-slate-800 px-2 py-0.5 rounded">Python 3.12 / LangGraph</span>
             </div>
-            <div className="text-emerald-400 text-[11px]">● Active State: REASONING_VERIFIED (Latency: 14ms)</div>
+            <div className="text-emerald-400 text-[11px] flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Active State: REASONING_VERIFIED (Latency: 14ms)</span>
+            </div>
           </div>
 
           <pre className="text-[11px] sm:text-xs text-slate-300 leading-relaxed overflow-x-auto scrollbar-none">
@@ -135,7 +146,7 @@ export default function WorkflowEngineSection({ onOpenConsultation }) {
             
         return await self.dispatch_webhook(verified.output, retry_policy=ExponentialBackoff(max=5))`}
           </pre>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

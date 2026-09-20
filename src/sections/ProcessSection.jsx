@@ -1,6 +1,7 @@
 import React from 'react';
 import { Search, Compass, Rocket, BarChart3, ArrowRight, CheckCircle2 } from 'lucide-react';
 import Button from '../components/ui/Button';
+import ScrollReveal, { RevealItem, DeployCard } from '../components/ui/ScrollReveal';
 
 export default function ProcessSection({ onOpenConsultation }) {
   const steps = [
@@ -39,41 +40,48 @@ export default function ProcessSection({ onOpenConsultation }) {
   ];
 
   return (
-    <section id="process" className="py-24 sm:py-32 bg-slate-50/70 border-t border-slate-200/60 relative">
+    <section id="process" className="py-24 sm:py-32 bg-slate-50/70 border-t border-slate-200/60 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
-            Our Engineering Protocol
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
-            From Bottleneck to Autonomous Scale in 18 Days.
-          </h2>
-          <p className="text-base text-slate-600 mt-3 leading-relaxed">
-            A battle-tested 4-phase deployment methodology designed for zero operational disruption and rapid demonstrable ROI.
-          </p>
-        </div>
+        <ScrollReveal stagger={true} staggerDelay={0.08} className="max-w-3xl mx-auto text-center mb-16">
+          <RevealItem direction="up">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              Our Engineering Protocol
+            </span>
+          </RevealItem>
+          <RevealItem direction="up">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
+              From Bottleneck to Autonomous Scale in 18 Days.
+            </h2>
+          </RevealItem>
+          <RevealItem direction="up">
+            <p className="text-base text-slate-600 mt-3 leading-relaxed">
+              A battle-tested 4-phase deployment methodology designed for zero operational disruption and rapid demonstrable ROI.
+            </p>
+          </RevealItem>
+        </ScrollReveal>
 
         {/* 4-Step Process Timeline */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          {steps.map((step, idx) => {
+        <ScrollReveal stagger={true} staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {steps.map((step) => {
             const Icon = step.icon;
             return (
-              <div
+              <DeployCard
                 key={step.number}
-                className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-soft-sm hover:shadow-soft-md hover:border-slate-300 transition-all flex flex-col justify-between"
+                direction="up"
+                className="p-6 sm:p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="text-2xl font-black text-slate-900 font-mono">
                       {step.number}
                     </span>
-                    <span className="text-[11px] font-bold text-brand-700 bg-brand-50 border border-brand-100 px-2.5 py-0.5 rounded-full">
+                    <span className="text-[11px] font-bold text-slate-600 bg-slate-100 border border-slate-200 px-2.5 py-0.5 rounded-full">
                       {step.timeframe}
                     </span>
                   </div>
 
-                  <div className="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-800 mb-4">
+                  <div className="w-10 h-10 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-800 mb-4 group-hover:bg-slate-900 group-hover:text-white transition-colors duration-200">
                     <Icon className="w-5 h-5" />
                   </div>
 
@@ -95,13 +103,13 @@ export default function ProcessSection({ onOpenConsultation }) {
                     <span>{step.deliverable}</span>
                   </div>
                 </div>
-              </div>
+              </DeployCard>
             );
           })}
-        </div>
+        </ScrollReveal>
 
         {/* Quick CTA banner */}
-        <div className="mt-14 text-center">
+        <ScrollReveal direction="up" delay={0.2} className="mt-14 text-center">
           <Button
             variant="brand"
             size="lg"
@@ -110,7 +118,7 @@ export default function ProcessSection({ onOpenConsultation }) {
           >
             Start Your Day 1 Systems Audit
           </Button>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -1,18 +1,14 @@
 import React, { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
-import HeroSection from './sections/HeroSection';
-import TechMarqueeSection from './sections/TechMarqueeSection';
-import ServicesBentoSection from './sections/ServicesBentoSection';
-import WorkflowEngineSection from './sections/WorkflowEngineSection';
-import RoiSection from './sections/RoiSection';
-import BeforeAfterSection from './sections/BeforeAfterSection';
-import CaseStudiesSection from './sections/CaseStudiesSection';
-import ProcessSection from './sections/ProcessSection';
-import PricingSection from './sections/PricingSection';
-import TestimonialsSection from './sections/TestimonialsSection';
-import FaqSection from './sections/FaqSection';
-import CtaBannerSection from './sections/CtaBannerSection';
+import HomePage from './pages/HomePage';
+import ServiceDetailPage from './pages/ServiceDetailPage';
+import AboutUsPage from './pages/AboutUsPage';
+import ContactUsPage from './pages/ContactUsPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
+import ScrollToTop from './components/common/ScrollToTop';
 import ProjectInquiryModal from './components/interactive/ProjectInquiryModal';
 import VideoDemoModal from './components/interactive/VideoDemoModal';
 
@@ -27,66 +23,106 @@ export default function App() {
   const closeDemo = () => setIsDemoOpen(false);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-brand-500 selection:text-white flex flex-col">
-      {/* Floating Header */}
-      <Navbar onOpenConsultation={openConsultation} />
+    <BrowserRouter>
+      <ScrollToTop />
+      <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-slate-900 selection:text-white flex flex-col">
+        <Navbar onOpenConsultation={openConsultation} />
 
-      {/* Main Content Sections */}
-      <main className="flex-1">
-        {/* Enhanced Hero Section with Live Canvas */}
-        <HeroSection
-          onOpenConsultation={openConsultation}
-          onOpenDemo={openDemo}
+        <main className="flex-1">
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <HomePage 
+                  onOpenConsultation={openConsultation}
+                  onOpenDemo={openDemo}
+                />
+              } 
+            />
+            <Route 
+              path="/services/:serviceId" 
+              element={
+                <ServiceDetailPage 
+                  onOpenConsultation={openConsultation}
+                />
+              } 
+            />
+            <Route 
+              path="/about" 
+              element={
+                <AboutUsPage 
+                  onOpenConsultation={openConsultation}
+                />
+              } 
+            />
+            <Route 
+              path="/about-us" 
+              element={
+                <AboutUsPage 
+                  onOpenConsultation={openConsultation}
+                />
+              } 
+            />
+            <Route 
+              path="/contact" 
+              element={
+                <ContactUsPage />
+              } 
+            />
+            <Route 
+              path="/contact-us" 
+              element={
+                <ContactUsPage />
+              } 
+            />
+            <Route 
+              path="/privacy" 
+              element={
+                <PrivacyPolicyPage 
+                  onOpenConsultation={openConsultation}
+                />
+              } 
+            />
+            <Route 
+              path="/privacy-policy" 
+              element={
+                <PrivacyPolicyPage 
+                  onOpenConsultation={openConsultation}
+                />
+              } 
+            />
+            <Route 
+              path="/terms" 
+              element={
+                <TermsOfServicePage 
+                  onOpenConsultation={openConsultation}
+                />
+              } 
+            />
+            <Route 
+              path="/terms-of-service" 
+              element={
+                <TermsOfServicePage 
+                  onOpenConsultation={openConsultation}
+                />
+              } 
+            />
+          </Routes>
+        </main>
+
+        <Footer onOpenConsultation={openConsultation} />
+
+        <ProjectInquiryModal
+          isOpen={isConsultationOpen}
+          onClose={closeConsultation}
         />
 
-        {/* Integration Tech Marquee */}
-        <TechMarqueeSection />
-
-        {/* Core Services Bento Grid (AI Automations + Web Services) */}
-        <ServicesBentoSection onOpenConsultation={openConsultation} />
-
-        {/* Autonomous Engine Architecture Breakdown */}
-        <WorkflowEngineSection onOpenConsultation={openConsultation} />
-
-        {/* Interactive ROI & Savings Calculator */}
-        <RoiSection onOpenConsultation={openConsultation} />
-
-        {/* Comparative Benchmark: Traditional vs Velnixatech */}
-        <BeforeAfterSection />
-
-        {/* Real Quantifiable Case Studies */}
-        <CaseStudiesSection onOpenConsultation={openConsultation} />
-
-        {/* 4-Step Engineering Protocol */}
-        <ProcessSection onOpenConsultation={openConsultation} />
-
-        {/* Transparent Investment Models & Guarantees */}
-        <PricingSection onOpenConsultation={openConsultation} />
-
-        {/* Client Testimonials & Social Proof */}
-        <TestimonialsSection />
-
-        {/* Filterable & Searchable FAQ */}
-        <FaqSection onOpenConsultation={openConsultation} />
-
-        {/* Closing Conversion Banner */}
-        <CtaBannerSection onOpenConsultation={openConsultation} />
-      </main>
-
-      {/* Multi-Column Footer */}
-      <Footer onOpenConsultation={openConsultation} />
-
-      {/* Interactive Modals */}
-      <ProjectInquiryModal
-        isOpen={isConsultationOpen}
-        onClose={closeConsultation}
-      />
-
-      <VideoDemoModal
-        isOpen={isDemoOpen}
-        onClose={closeDemo}
-        onOpenConsultation={openConsultation}
-      />
-    </div>
+        <VideoDemoModal
+          isOpen={isDemoOpen}
+          onClose={closeDemo}
+          onOpenConsultation={openConsultation}
+        />
+      </div>
+    </BrowserRouter>
   );
 }

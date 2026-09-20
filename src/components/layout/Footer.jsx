@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2, Github, Twitter, Linkedin, ShieldCheck, Activity } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, CheckCircle2, Github, Twitter, Linkedin, ShieldCheck, Lock, CreditCard, MapPin } from 'lucide-react';
 import Button from '../ui/Button';
+import VelnixLogo from '../ui/VelnixLogo';
 
 export default function Footer({ onOpenConsultation }) {
   const [email, setEmail] = useState('');
@@ -13,29 +15,15 @@ export default function Footer({ onOpenConsultation }) {
   };
 
   return (
-    <footer className="bg-white border-t border-slate-200/90 pt-16 pb-12">
+    <footer className="bg-white border-t border-slate-200/90 pt-16 pb-12 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-16 border-b border-slate-100">
           {/* Brand Col */}
           <div className="lg:col-span-4 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white">
-                <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M6 7L12 18L18 7"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <circle cx="12" cy="11" r="2" fill="#06B6D4" />
-                </svg>
-              </div>
-              <span className="text-xl font-extrabold tracking-tight text-slate-900">
-                VELNIXA<span className="text-brand-600">TECH</span>
-              </span>
-            </div>
+            <Link to="/" className="cursor-pointer inline-block">
+              <VelnixLogo size={42} />
+            </Link>
 
             <p className="text-sm text-slate-500 max-w-sm leading-relaxed">
               We design, build, and deploy autonomous AI systems, enterprise workflow orchestrators, and high-velocity web platforms for market leaders.
@@ -51,14 +39,19 @@ export default function Footer({ onOpenConsultation }) {
               <span className="text-slate-400 font-mono text-[11px]">(99.99%)</span>
             </div>
 
+            <div className="flex items-start gap-2 text-xs text-slate-500 pt-1">
+              <MapPin className="w-3.5 h-3.5 text-slate-400 shrink-0 mt-0.5" />
+              <span>7901 4TH ST N STE 300 ST. PETERSBURG, FL 33702</span>
+            </div>
+
             <div className="flex items-center gap-3 pt-2 text-slate-400">
-              <a href="#" className="p-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors" aria-label="GitHub">
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors" aria-label="GitHub">
                 <Github className="w-4 h-4" />
               </a>
-              <a href="#" className="p-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors" aria-label="Twitter">
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors" aria-label="Twitter">
                 <Twitter className="w-4 h-4" />
               </a>
-              <a href="#" className="p-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors" aria-label="LinkedIn">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:text-slate-900 hover:bg-slate-100 transition-colors" aria-label="LinkedIn">
                 <Linkedin className="w-4 h-4" />
               </a>
             </div>
@@ -70,12 +63,12 @@ export default function Footer({ onOpenConsultation }) {
               AI Automations
             </h4>
             <ul className="space-y-2 text-xs font-medium text-slate-500">
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Autonomous Agent Swarms</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Enterprise Webhook Routers</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Private RAG & Knowledge Bases</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Financial Document Intelligence</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">CRM & ERP Bi-Directional Sync</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Customer Care 24/7 Swarms</a></li>
+              <li><Link to="/services/autonomous-agents" className="hover:text-slate-900 transition-colors">Autonomous Agent Swarms</Link></li>
+              <li><Link to="/services/enterprise-integrations" className="hover:text-slate-900 transition-colors">Enterprise Webhook Routers</Link></li>
+              <li><Link to="/services/rag-knowledge-bases" className="hover:text-slate-900 transition-colors">Private RAG & Knowledge Bases</Link></li>
+              <li><Link to="/services/autonomous-agents" className="hover:text-slate-900 transition-colors">Financial Document Intelligence</Link></li>
+              <li><Link to="/services/enterprise-integrations" className="hover:text-slate-900 transition-colors">CRM & ERP Bi-Directional Sync</Link></li>
+              <li><Link to="/services/autonomous-agents" className="hover:text-slate-900 transition-colors">Customer Care 24/7 Swarms</Link></li>
             </ul>
           </div>
 
@@ -85,16 +78,15 @@ export default function Footer({ onOpenConsultation }) {
               Web Services
             </h4>
             <ul className="space-y-2 text-xs font-medium text-slate-500">
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Next.js 15 Flagships</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Sub-50ms Edge SSR</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Headless CMS Platforms</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Conversion UI/UX Systems</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Cloud Infrastructure & CI/CD</a></li>
-              <li><a href="#services" className="hover:text-brand-600 transition-colors">Core Web Vitals Audit</a></li>
+              <li><Link to="/services/web-engineering" className="hover:text-slate-900 transition-colors">Next.js 15 Flagships</Link></li>
+              <li><Link to="/services/web-engineering" className="hover:text-slate-900 transition-colors">Sub-50ms Edge SSR</Link></li>
+              <li><Link to="/services/conversion-design" className="hover:text-slate-900 transition-colors">Conversion UI/UX Systems</Link></li>
+              <li><Link to="/services/cloud-infrastructure" className="hover:text-slate-900 transition-colors">Cloud Infrastructure & CI/CD</Link></li>
+              <li><Link to="/services/web-engineering" className="hover:text-slate-900 transition-colors">Core Web Vitals Audit</Link></li>
             </ul>
           </div>
 
-          {/* Col 4: Newsletter */}
+          {/* Col 4: Newsletter & Merchant Assurance */}
           <div className="lg:col-span-3 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900">
               Architecture Dispatch
@@ -117,7 +109,7 @@ export default function Footer({ onOpenConsultation }) {
                     placeholder="architect@company.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white"
+                    className="flex-1 px-3 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-white"
                   />
                   <Button type="submit" variant="primary" size="sm" className="shrink-0 text-xs">
                     Join
@@ -129,17 +121,50 @@ export default function Footer({ onOpenConsultation }) {
           </div>
         </div>
 
+        {/* Payment Methods & Security Compliance Bar */}
+        <div className="py-6 border-b border-slate-100 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="font-semibold text-slate-800">Accepted Payment Rails:</span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-semibold text-slate-700">Visa</span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-semibold text-slate-700">Mastercard</span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-semibold text-slate-700">American Express</span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-semibold text-slate-700">Apple Pay</span>
+            <span className="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-semibold text-slate-700">ACH / Wire</span>
+          </div>
+
+          <div className="flex items-center gap-4 text-[11px] text-slate-500">
+            <div className="flex items-center gap-1">
+              <Lock className="w-3.5 h-3.5 text-emerald-600" />
+              <span>256-Bit TLS Encryption</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <ShieldCheck className="w-3.5 h-3.5 text-slate-900" />
+              <span>PCI-DSS Level 1 via Stripe</span>
+            </div>
+          </div>
+        </div>
+
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <div className="flex items-center gap-2">
+        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-slate-400">
             <span>© {new Date().getFullYear()} Velnixatech Technologies Inc. All rights reserved.</span>
+            <span className="hidden sm:inline text-slate-300">•</span>
+            <span className="text-slate-500">7901 4TH ST N STE 300 ST. PETERSBURG, FL 33702</span>
           </div>
 
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-slate-600 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-slate-600 transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-slate-600 transition-colors">Security & SOC-2</a>
-            <a href="#" className="hover:text-slate-600 transition-colors">System Status</a>
+            <Link to="/privacy" className="hover:text-slate-900 transition-colors font-medium">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-slate-900 transition-colors font-medium">
+              Terms & Conditions
+            </Link>
+            <Link to="/privacy#security" className="hover:text-slate-900 transition-colors">
+              Security & SOC-2
+            </Link>
+            <Link to="/terms#article-8" className="hover:text-slate-900 transition-colors">
+              SLAs & Hypercare
+            </Link>
           </div>
         </div>
       </div>

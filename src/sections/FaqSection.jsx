@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { FAQS, FAQ_CATEGORIES } from '../data/faq';
-import { ChevronDown, Search, MessageSquare, ArrowRight } from 'lucide-react';
+import { ChevronDown, Search, ArrowRight } from 'lucide-react';
 import Button from '../components/ui/Button';
+import ScrollReveal, { RevealItem, DeployCard } from '../components/ui/ScrollReveal';
 
 export default function FaqSection({ onOpenConsultation }) {
   const [openIndex, setOpenIndex] = useState(0);
@@ -21,22 +22,28 @@ export default function FaqSection({ onOpenConsultation }) {
   };
 
   return (
-    <section id="faq" className="py-24 sm:py-32 bg-white relative">
+    <section id="faq" className="py-24 sm:py-32 bg-white relative overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
-            Clarity & Transparency
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
-            Frequently Answered Questions.
-          </h2>
-          <p className="text-base text-slate-600 mt-3 max-w-2xl mx-auto leading-relaxed">
-            Everything you need to know about our engineering protocols, data security, code ownership, and deployment timelines.
-          </p>
+        <ScrollReveal stagger={true} staggerDelay={0.08} className="text-center mb-12">
+          <RevealItem direction="up">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              Clarity & Transparency
+            </span>
+          </RevealItem>
+          <RevealItem direction="up">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
+              Frequently Answered Questions.
+            </h2>
+          </RevealItem>
+          <RevealItem direction="up">
+            <p className="text-base text-slate-600 mt-3 max-w-2xl mx-auto leading-relaxed">
+              Everything you need to know about our engineering protocols, data security, code ownership, and deployment timelines.
+            </p>
+          </RevealItem>
 
           {/* Search bar & Category filters */}
-          <div className="mt-8 space-y-4">
+          <RevealItem direction="scale" className="mt-8 space-y-4">
             <div className="relative max-w-md mx-auto">
               <Search className="w-4 h-4 text-slate-400 absolute left-4 top-1/2 -translate-y-1/2" />
               <input
@@ -44,7 +51,7 @@ export default function FaqSection({ onOpenConsultation }) {
                 placeholder="Search architecture, security, SLAs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-11 pr-4 py-2.5 text-xs rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 bg-slate-50/50"
+                className="w-full pl-11 pr-4 py-2.5 text-xs rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-slate-900 bg-slate-50/50"
               />
             </div>
 
@@ -55,7 +62,7 @@ export default function FaqSection({ onOpenConsultation }) {
                   onClick={() => setActiveCategory(cat)}
                   className={`px-3 py-1.5 text-xs font-medium rounded-xl transition-colors cursor-pointer ${
                     activeCategory === cat
-                      ? 'bg-slate-900 text-white shadow-soft-xs'
+                      ? 'bg-slate-900 text-white shadow-xs'
                       : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
                   }`}
                 >
@@ -63,11 +70,11 @@ export default function FaqSection({ onOpenConsultation }) {
                 </button>
               ))}
             </div>
-          </div>
-        </div>
+          </RevealItem>
+        </ScrollReveal>
 
         {/* Accordion List */}
-        <div className="space-y-3">
+        <ScrollReveal key={`${activeCategory}-${searchQuery}`} stagger={true} staggerDelay={0.06} className="space-y-3">
           {filteredFaqs.length === 0 ? (
             <div className="text-center py-12 text-slate-400 text-sm">
               No matching questions found for "{searchQuery}". Ask our team directly below.
@@ -76,11 +83,13 @@ export default function FaqSection({ onOpenConsultation }) {
             filteredFaqs.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
-                <div
+                <DeployCard
                   key={idx}
+                  direction="up"
+                  hover={false}
                   className={`rounded-2xl border transition-all ${
                     isOpen
-                      ? 'border-brand-300 bg-brand-50/20 shadow-soft-sm'
+                      ? 'border-slate-300 bg-slate-100/20 shadow-sm'
                       : 'border-slate-200/90 bg-white hover:border-slate-300'
                   }`}
                 >
@@ -99,7 +108,7 @@ export default function FaqSection({ onOpenConsultation }) {
                     </div>
                     <div
                       className={`w-7 h-7 rounded-full bg-slate-100 flex items-center justify-center text-slate-500 shrink-0 transition-transform duration-200 ${
-                        isOpen ? 'rotate-180 bg-brand-100 text-brand-700' : ''
+                        isOpen ? 'rotate-180 bg-slate-200 text-slate-600' : ''
                       }`}
                     >
                       <ChevronDown className="w-4 h-4" />
@@ -111,14 +120,14 @@ export default function FaqSection({ onOpenConsultation }) {
                       {faq.answer}
                     </div>
                   )}
-                </div>
+                </DeployCard>
               );
             })
           )}
-        </div>
+        </ScrollReveal>
 
         {/* Still have questions banner */}
-        <div className="mt-14 p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center sm:flex sm:items-center sm:justify-between gap-4">
+        <ScrollReveal direction="up" delay={0.2} className="mt-14 p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center sm:flex sm:items-center sm:justify-between gap-4">
           <div className="text-left mb-3 sm:mb-0">
             <h4 className="text-sm font-bold text-slate-900">Have a specific architectural requirement?</h4>
             <p className="text-xs text-slate-500">Our engineering leads are available for direct technical inquiries.</p>
@@ -131,7 +140,7 @@ export default function FaqSection({ onOpenConsultation }) {
           >
             Speak With An Architect
           </Button>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

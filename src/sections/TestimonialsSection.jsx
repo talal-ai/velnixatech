@@ -1,30 +1,38 @@
 import React from 'react';
 import { TESTIMONIALS, CLIENT_LOGOS } from '../data/testimonials';
 import { Star, CheckCircle2, Quote } from 'lucide-react';
+import ScrollReveal, { RevealItem, DeployCard } from '../components/ui/ScrollReveal';
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-24 sm:py-32 bg-slate-50/70 border-t border-slate-200/60 relative">
+    <section className="py-24 sm:py-32 bg-slate-50/70 border-t border-slate-200/60 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <span className="text-xs font-bold uppercase tracking-widest text-brand-600">
-            Client Conviction
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
-            Trusted by Operators, Founders & CTOs.
-          </h2>
-          <p className="text-base text-slate-600 mt-3 leading-relaxed">
-            See how forward-thinking leaders leverage Velnixatech to outpace their competitors and scale operations seamlessly.
-          </p>
-        </div>
+        <ScrollReveal stagger={true} staggerDelay={0.08} className="max-w-3xl mx-auto text-center mb-16">
+          <RevealItem direction="up">
+            <span className="text-xs font-bold uppercase tracking-widest text-slate-500">
+              Client Conviction
+            </span>
+          </RevealItem>
+          <RevealItem direction="up">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight mt-2">
+              Trusted by Operators, Founders & CTOs.
+            </h2>
+          </RevealItem>
+          <RevealItem direction="up">
+            <p className="text-base text-slate-600 mt-3 leading-relaxed">
+              See how forward-thinking leaders leverage Velnixatech to outpace their competitors and scale operations seamlessly.
+            </p>
+          </RevealItem>
+        </ScrollReveal>
 
         {/* Testimonials 3-Column Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <ScrollReveal stagger={true} staggerDelay={0.1} className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {TESTIMONIALS.map((t, idx) => (
-            <div
+            <DeployCard
               key={idx}
-              className="p-8 rounded-3xl bg-white border border-slate-200 shadow-soft-sm hover:shadow-soft-md transition-all flex flex-col justify-between"
+              direction="up"
+              className="p-8 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between group"
             >
               <div>
                 {/* 5 Stars */}
@@ -34,7 +42,7 @@ export default function TestimonialsSection() {
                   ))}
                 </div>
 
-                <Quote className="w-6 h-6 text-brand-300 mb-3" />
+                <Quote className="w-6 h-6 text-slate-400 mb-3" />
 
                 <p className="text-sm text-slate-700 leading-relaxed italic mb-6">
                   "{t.quote}"
@@ -55,7 +63,7 @@ export default function TestimonialsSection() {
                   <div>
                     <div className="text-sm font-bold text-slate-900 flex items-center gap-1">
                       <span>{t.name}</span>
-                      {t.verified && <CheckCircle2 className="w-3.5 h-3.5 text-brand-600" />}
+                      {t.verified && <CheckCircle2 className="w-3.5 h-3.5 text-slate-500" />}
                     </div>
                     <div className="text-xs text-slate-600">
                       {t.role}, <strong className="text-slate-800 font-semibold">{t.company}</strong>
@@ -63,12 +71,12 @@ export default function TestimonialsSection() {
                   </div>
                 </div>
               </div>
-            </div>
+            </DeployCard>
           ))}
-        </div>
+        </ScrollReveal>
 
         {/* Client Industry Cloud */}
-        <div className="mt-16 pt-12 border-t border-slate-200/80">
+        <ScrollReveal stagger={true} staggerDelay={0.06} delay={0.2} className="mt-16 pt-12 border-t border-slate-200/80">
           <div className="text-center mb-6">
             <span className="text-xs font-semibold text-slate-600 uppercase tracking-wider">
               Trusted Across High-Growth Sectors
@@ -77,16 +85,17 @@ export default function TestimonialsSection() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {CLIENT_LOGOS.map((client, i) => (
-              <div
+              <RevealItem
                 key={i}
-                className="p-3.5 rounded-xl bg-white border border-slate-200/70 text-center shadow-soft-xs"
+                direction="scale"
+                className="p-3.5 rounded-xl bg-white border border-slate-200/70 text-center shadow-xs hover:border-slate-300 transition-colors"
               >
                 <div className="text-xs font-bold text-slate-800">{client.name}</div>
                 <div className="text-[10px] text-slate-600">{client.label}</div>
-              </div>
+              </RevealItem>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
